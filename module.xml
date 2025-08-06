@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Export generator="Cache" version="25">
+  <Document name="iris-recordmap-fordummies.ZPM">
+    <Module>
+      <Name>iris-recordmap-fordummies</Name>
+	    <Description>Record Map Intersystems Demo</Description> 
+      <Version>1.0.0</Version>
+      <Packaging>module</Packaging>
+      <SourcesRoot>src</SourcesRoot>
+      <Resource Name="St.Recordmap.PKG"/>
+    </Module>
+  </Document>
+</Export>

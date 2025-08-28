@@ -19,8 +19,8 @@ ClassMethod CreateProjection(classname As %String, ByRef parameters As %String, 
 {
     Do ..AddItem(,"EnsLib.RecordMap.Service.FileService", "EnsLib.RecordMap.Service.FileService","Demo",,,,"File service for RecordMap")
     Do ..AddItem(,"EnsLib.RecordMap.Service.ComplexBatchFileService", "EnsLib.RecordMap.Service.ComplexBatchFileService","Demo",,,,"File service for RecordMap complex")
-    Do ..AddItem(,"Demo.BP.ProcessData", "Demo.BP.ProcessData","Demo",,,,"BP for RecordMap")
-    Do ..AddItem(,"Demo.BP.ProcessDataComplex", "Demo.BP.ProcessDataComplex","Demo",,,,"BP for RecordMap complex")
+    Do ..AddItem(,"St.Recordmap.BP.ProcessData", "St.Recordmap.BP.ProcessData","Demo",,,,"BP for RecordMap")
+    Do ..AddItem(,"St.Recordmap.BP.ProcessDataComplex", "St.Recordmap.BP.ProcessDataComplex","Demo",,,,"BP for RecordMap complex")
     
     // Add RecordMap service settings
     Do ..AddDefaultSetting(,"EnsLib.RecordMap.Service.FileService",, "FilePath", "/opt/irisbuild/process/", "Path to the input files")

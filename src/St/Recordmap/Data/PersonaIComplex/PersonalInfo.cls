@@ -1,21 +1,21 @@
-/// RECORDMAP: Modified during compilation of Complex RecordMap 'Demo.Data.PersonaIComplex'
+/// RECORDMAP: Modified during compilation of Complex RecordMap 'St.Recordmap.Data.PersonaIComplex'
 /// on 2025-08-26 at 10:39:09.821 [2025-08-26 10:39:09.821 UTC]
 /// by user _SYSTEM
-Class Demo.Data.PersonaIComplex.PersonalInfo Extends (EnsLib.RecordMap.ComplexSequence, %XML.Adaptor) [ Inheritance = right, ProcedureBlock ]
+Class St.Recordmap.Data.PersonaIComplex.PersonalInfo Extends (EnsLib.RecordMap.ComplexSequence, %XML.Adaptor) [ Inheritance = right, ProcedureBlock ]
 {
 
-Property User As Demo.Data.CompexUser.Record [ Required ];
+Property User As St.Recordmap.Data.CompexUser.Record [ Required ];
 
-Property Phone As array Of Demo.Data.ComplexPhone.Record(MAXREPEATS = 5);
+Property Phone As array Of St.Recordmap.Data.ComplexPhone.Record(MAXREPEATS = 5);
 
-Property Address As array Of Demo.Data.ComplexAddress.Record(MAXREPEATS = 2);
+Property Address As array Of St.Recordmap.Data.ComplexAddress.Record(MAXREPEATS = 2);
 
 Method PutSequence(pIOStream As %IO.DeviceStream) As %Status
 {
 	Set tStatus = $$$OK
 	Try {
 		If $IsObject(..User) {
-			Set tStatus = ##class(Demo.Data.CompexUser).PutObject(pIOStream,..User,0)
+			Set tStatus = ##class(St.Recordmap.Data.CompexUser).PutObject(pIOStream,..User,0)
 			If $$$ISERR(tStatus) Quit
 		}
 		Set seqKey = ""
@@ -23,7 +23,7 @@ Method PutSequence(pIOStream As %IO.DeviceStream) As %Status
 			Set tElement = ..Phone.GetNext(.seqKey)
 			If (seqKey = "") Quit
 			If $IsObject(tElement) {
-				Set tStatus = ##class(Demo.Data.ComplexPhone).PutObject(pIOStream,tElement,0)
+				Set tStatus = ##class(St.Recordmap.Data.ComplexPhone).PutObject(pIOStream,tElement,0)
 				If $$$ISERR(tStatus) Quit
 			}
 			Set tStatus = ..Phone.%UnSwizzleAt(seqKey)
@@ -35,7 +35,7 @@ Method PutSequence(pIOStream As %IO.DeviceStream) As %Status
 			Set tElement = ..Address.GetNext(.seqKey)
 			If (seqKey = "") Quit
 			If $IsObject(tElement) {
-				Set tStatus = ##class(Demo.Data.ComplexAddress).PutObject(pIOStream,tElement,0)
+				Set tStatus = ##class(St.Recordmap.Data.ComplexAddress).PutObject(pIOStream,tElement,0)
 				If $$$ISERR(tStatus) Quit
 			}
 			Set tStatus = ..Address.%UnSwizzleAt(seqKey)
@@ -51,7 +51,7 @@ Method PutSequence(pIOStream As %IO.DeviceStream) As %Status
 
 Trigger OnDeleteTrigger [ Event = DELETE ]
 {
-	Set %ok = ##class(Demo.Data.PersonaIComplex.PersonalInfo).%OnDelete($$$oidForm({ID}))
+	Set %ok = ##class(St.Recordmap.Data.PersonaIComplex.PersonalInfo).%OnDelete($$$oidForm({ID}))
 }
 
 Parameter RECORDMAPGENERATED = 1;
@@ -68,7 +68,7 @@ Method %OnClose() As %Status [ Private, ServerOnly = 1 ]
 				If (seqKey = "") Quit
 				If $IsObject(tElement) && (""'=tElement.%Id()) {
 					Set tElementId = tElement.%Id()
-					Set tStatus = ##class(Demo.Data.ComplexPhone.Record).%DeleteId(tElementId)
+					Set tStatus = ##class(St.Recordmap.Data.ComplexPhone.Record).%DeleteId(tElementId)
 				}
 				If $$$ISERR(tStatus) Quit
 			}
@@ -78,7 +78,7 @@ Method %OnClose() As %Status [ Private, ServerOnly = 1 ]
 				If (seqKey = "") Quit
 				If $IsObject(tElement) && (""'=tElement.%Id()) {
 					Set tElementId = tElement.%Id()
-					Set tStatus = ##class(Demo.Data.ComplexAddress.Record).%DeleteId(tElementId)
+					Set tStatus = ##class(St.Recordmap.Data.ComplexAddress.Record).%DeleteId(tElementId)
 				}
 				If $$$ISERR(tStatus) Quit
 			}
@@ -109,11 +109,11 @@ Storage Default
 <Structure>subnode</Structure>
 <Subscript>"Phone"</Subscript>
 </Data>
-<DataLocation>^Demo.Data.Per9161.PersonalInfoD</DataLocation>
+<DataLocation>^St.RecordmapE52F.PersonalInfoD</DataLocation>
 <DefaultData>PersonalInfoDefaultData</DefaultData>
-<IdLocation>^Demo.Data.Per9161.PersonalInfoD</IdLocation>
-<IndexLocation>^Demo.Data.Per9161.PersonalInfoI</IndexLocation>
-<StreamLocation>^Demo.Data.Per9161.PersonalInfoS</StreamLocation>
+<IdLocation>^St.RecordmapE52F.PersonalInfoD</IdLocation>
+<IndexLocation>^St.RecordmapE52F.PersonalInfoI</IndexLocation>
+<StreamLocation>^St.RecordmapE52F.PersonalInfoS</StreamLocation>
 <Type>%Storage.Persistent</Type>
 }
 

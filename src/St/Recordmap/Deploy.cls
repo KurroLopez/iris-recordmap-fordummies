@@ -1,11 +1,11 @@
-Class Demo.Deploy Extends (St.Tools.Deploy, %Projection.AbstractProjection) [ DependsOn = Demo.Production ]
+Class St.Recordmap.Deploy Extends (St.Tools.Deploy, %Projection.AbstractProjection) [ DependsOn = St.Recordmap.Production ]
 {
 
-Parameter PRODUCTION = "Demo.Production";
+Parameter PRODUCTION = "St.Recordmap.Production";
 
 Parameter NAMESPACE = "USER";
 
-Projection Reference As Demo.Deploy;
+Projection Reference As St.Recordmap.Deploy;
 
 /// This method is called by the Class Compiler whenever an associated 
 /// class has finished compiling. <var>classname</var> contains the name of 
@@ -25,17 +25,17 @@ ClassMethod CreateProjection(classname As %String, ByRef parameters As %String, 
     // Add RecordMap service settings
     Do ..AddDefaultSetting(,"EnsLib.RecordMap.Service.FileService",, "FilePath", "/opt/irisbuild/process/", "Path to the input files")
     Do ..AddDefaultSetting(,"EnsLib.RecordMap.Service.FileService",, "ArchivePath", "/opt/irisbuild/process/archive/", "Path to the archive files")
-    Do ..AddDefaultSetting(,"EnsLib.RecordMap.Service.FileService",, "RecordMap", "Demo.Data.PersonalInfoPhone", "RecordMap class")
+    Do ..AddDefaultSetting(,"EnsLib.RecordMap.Service.FileService",, "RecordMap", "St.Recordmap.Data.PersonalInfoPhone", "RecordMap class")
     Do ..AddDefaultSetting(,"EnsLib.RecordMap.Service.FileService",, "FileSpec", "*.csv", "File specification")
-    Do ..AddDefaultSetting(,"EnsLib.RecordMap.Service.FileService",, "TargetConfigNames", "Demo.BP.ProcessData", "BP class")
+    Do ..AddDefaultSetting(,"EnsLib.RecordMap.Service.FileService",, "TargetConfigNames", "St.Recordmap.BP.ProcessData", "BP class")
     Do ..AddDefaultSetting(,"EnsLib.RecordMap.Service.FileService",, "HeaderCount", "1", "Number of header lines in the input file")
 
     // Add RecordMap complex service settings
     Do ..AddDefaultSetting(,"EnsLib.RecordMap.Service.ComplexBatchFileService",, "FilePath", "/opt/irisbuild/process/", "Path to the input files")
     Do ..AddDefaultSetting(,"EnsLib.RecordMap.Service.ComplexBatchFileService",, "ArchivePath", "/opt/irisbuild/process/archive/", "Path to the archive files")
-    Do ..AddDefaultSetting(,"EnsLib.RecordMap.Service.ComplexBatchFileService",, "ComplexMap", "Demo.Data.PersonaIComplex", "RecordMap complex class")
+    Do ..AddDefaultSetting(,"EnsLib.RecordMap.Service.ComplexBatchFileService",, "ComplexMap", "St.Recordmap.Data.PersonaIComplex", "RecordMap complex class")
     Do ..AddDefaultSetting(,"EnsLib.RecordMap.Service.ComplexBatchFileService",, "FileSpec", "*.txt", "File specification")
-    Do ..AddDefaultSetting(,"EnsLib.RecordMap.Service.ComplexBatchFileService",, "TargetConfigNames", "Demo.BP.ProcessDataComplex", "BP class")
+    Do ..AddDefaultSetting(,"EnsLib.RecordMap.Service.ComplexBatchFileService",, "TargetConfigNames", "St.Recordmap.BP.ProcessDataComplex", "BP class")
 
     /// Check if the production is running
     if '##class(Ens.Director).IsProductionRunning(..#PRODUCTION)

@@ -1,8 +1,8 @@
 /// THIS IS GENERATED CODE. DO NOT EDIT.<br/>
-/// RECORDMAP: Generated from RecordMap 'Demo.Data.PersonalInfo'
+/// RECORDMAP: Generated from RecordMap 'St.Recordmap.Data.PersonalInfo'
 /// on 2025-08-04 at 08:37:00.646 [2025-08-04 08:37:00.646 UTC]
 /// by user SuperUser
-Class Demo.Data.PersonalInfo.Record Extends (%Persistent, %XML.Adaptor, Ens.Request, EnsLib.RecordMap.Base) [ Inheritance = right, ProcedureBlock ]
+Class St.Recordmap.Data.PersonalInfo.Record Extends (%Persistent, %XML.Adaptor, Ens.Request, EnsLib.RecordMap.Base) [ Inheritance = right, ProcedureBlock ]
 {
 
 Parameter INCLUDETOPFIELDS = 1;
@@ -54,12 +54,12 @@ Storage Default
 <Value>Surname</Value>
 </Value>
 </Data>
-<DataLocation>^Demo.Data.PersonalInfo.RecordD</DataLocation>
+<DataLocation>^St.Recordmap.Data.P15D0.RecordD</DataLocation>
 <DefaultData>RecordDefaultData</DefaultData>
 <ExtentSize>2000000</ExtentSize>
-<IdLocation>^Demo.Data.PersonalInfo.RecordD</IdLocation>
-<IndexLocation>^Demo.Data.PersonalInfo.RecordI</IndexLocation>
-<StreamLocation>^Demo.Data.PersonalInfo.RecordS</StreamLocation>
+<IdLocation>^St.Recordmap.Data.P15D0.RecordD</IdLocation>
+<IndexLocation>^St.Recordmap.Data.P15D0.RecordI</IndexLocation>
+<StreamLocation>^St.Recordmap.Data.P15D0.RecordS</StreamLocation>
 <Type>%Storage.Persistent</Type>
 }
 

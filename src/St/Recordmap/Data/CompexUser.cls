@@ -1,10 +1,10 @@
-/// RECORDMAP: Modified during compilation of RecordMap 'Demo.Data.PersonalInfoPhone'
-/// on 2025-08-07 at 18:00:19.868 [2025-08-07 18:00:19.868 UTC]
-/// by user SuperUser
-Class Demo.Data.PersonalInfoPhone Extends EnsLib.RecordMap.RecordMap
+/// RECORDMAP: Modified during compilation of RecordMap 'St.Recordmap.Data.CompexUser'
+/// on 2025-08-26 at 09:57:15.091 [2025-08-26 09:57:15.091 UTC]
+/// by user _SYSTEM
+Class St.Recordmap.Data.CompexUser Extends EnsLib.RecordMap.RecordMap
 {
 
-Parameter OBJECTNAME = "Demo.Data.PersonalInfoPhone.Record";
+Parameter OBJECTNAME = "St.Recordmap.Data.CompexUser.Record";
 
 /// THIS IS GENERATED CODE. DO NOT EDIT.<br/>
 /// Method to retrieve a record from a stream or device. This method will be generated based on the
@@ -79,7 +79,7 @@ ClassMethod GetRecord(pStream As %IO.DeviceStream, pObject As %RegisteredObject,
 {
 	Set tStatus = $$$OK
 	If pLabelFound { Set tRecLabel = "" } 
-	Else { Set tRecLabel = "" } 
+	Else { Set tRecLabel = "USER|" } 
 	Set tStatus = ..chunkRecord(pStream, .tRecordData, .tCharCount, "", pTimeout, $char(13,10), tRecLabel, .pLookAhead, "", 0)
 	If $$$ISERR(tStatus) Quit tStatus
 	Set tMaxLocal = $$$MaxLocalLength
@@ -122,39 +122,6 @@ ClassMethod GetRecord(pStream As %IO.DeviceStream, pObject As %RegisteredObject,
 	If pGetTopFields {
 		Set pObject.NationalId = tCurrString
 	}
-	If '$data(tRecordData(tCurrChunk, "block")) {
-		Set tCurrString = $piece(tRecordData(tCurrChunk), $char(59), tTopPiece)
-	}
-	Do ..checkMerge(.tCurrChunk, .tRecordData, .tCurrString, $char(59), .tTopPiece)
-	If pGetTopFields {
-		Set pObject.Address = tCurrString
-	}
-	If '$data(tRecordData(tCurrChunk, "block")) {
-		Set tCurrString = $piece(tRecordData(tCurrChunk), $char(59), tTopPiece)
-	}
-	Do ..checkMerge(.tCurrChunk, .tRecordData, .tCurrString, $char(59), .tTopPiece)
-	If pGetTopFields {
-		Set pObject.City = tCurrString
-	}
-	If '$data(tRecordData(tCurrChunk, "block")) {
-		Set tCurrString = $piece(tRecordData(tCurrChunk), $char(59), tTopPiece)
-	}
-	Do ..checkMerge(.tCurrChunk, .tRecordData, .tCurrString, $char(59), .tTopPiece)
-	If pGetTopFields {
-		Set pObject.Country = tCurrString
-	}
-	If '$data(tRecordData(tCurrChunk, "block")) {
-		Set tCurrString = $piece(tRecordData(tCurrChunk), $char(59), tTopPiece)
-	}
-	Do ..checkMerge(.tCurrChunk, .tRecordData, .tCurrString, $char(59), .tTopPiece)
-	If pGetTopFields {
-		For tLoop1=1:1:$length(tCurrString,$char(35)) {
-			Set tRepString = $piece(tCurrString,$char(35),tLoop1)
-			Set tStatus = pObject.Phone.Insert(tRepString)
-			If $$$ISERR(tStatus) Quit
-		}
-		If $$$ISERR(tStatus) Quit
-	}
 	Quit tStatus
 }
 
@@ -164,19 +131,12 @@ ClassMethod PutRecord(pStream As %IO.DeviceStream, pObject As %RegisteredObject,
 {
 	Set tStatus = $$$OK
 	Set tmpStream=##class(%Stream.TmpBinary).%New()
+	Set tStatus = tmpStream.Write("USER|")
+	If $$$ISERR(tStatus) Quit tStatus
 	Do tmpStream.Write($select(pHasTopFields: pObject.Name,1: ""))
 	Do tmpStream.Write($char(59) _ $select(pHasTopFields: pObject.Surname,1: ""))
 	Do tmpStream.Write($char(59) _ $select(pHasTopFields: pObject.DateOfBirthLogicalToDisplay(pObject.DateOfBirth),1: ""))
 	Do tmpStream.Write($char(59) _ $select(pHasTopFields: pObject.NationalId,1: ""))
-	Do tmpStream.Write($char(59) _ $select(pHasTopFields: pObject.Address,1: ""))
-	Do tmpStream.Write($char(59) _ $select(pHasTopFields: pObject.City,1: ""))
-	Do tmpStream.Write($char(59) _ $select(pHasTopFields: pObject.Country,1: ""))
-	Do tmpStream.Write($char(59))
-	If pHasTopFields {
-		For tLoop1=1:1:pObject.Phone.Count() {
-			Do tmpStream.Write($select(tLoop1=1: "", 1: $char(35)) _ pObject.Phone.GetAt(tLoop1))
-		}
-	}
 	Set tStatus = tmpStream.Write($char(13,10))
 	If $$$ISERR(tStatus) Quit tStatus
 	Do pStream.CopyFrom(tmpStream,,0,.tStatus)
@@ -186,14 +146,14 @@ ClassMethod PutRecord(pStream As %IO.DeviceStream, pObject As %RegisteredObject,
 ClassMethod GetGeneratedClasses(Output pClasses As %String) As %Status
 {
 	Kill pClasses
-	Set pClasses("Demo.Data.PersonalInfoPhone.Record")=""
+	Set pClasses("St.Recordmap.Data.CompexUser.Record")=""
 	Set pClasses($classname())=""
 	Quit $$$OK
 }
 
 ClassMethod getIdentifier() As %String [ CodeMode = expression ]
 {
-""
+"USER|"
 }
 
 ClassMethod getType() As EnsLib.RecordMap.Model.DataType.RecordType [ CodeMode = expression ]
@@ -203,7 +163,7 @@ ClassMethod getType() As EnsLib.RecordMap.Model.DataType.RecordType [ CodeMode =
 
 XData RecordMap [ XMLNamespace = "http://www.intersystems.com/Ensemble/RecordMap" ]
 {
-<Record xmlns="http://www.intersystems.com/Ensemble/RecordMap" name="Demo.Data.PersonalInfoPhone" type="delimited" char_encoding="UTF-8" targetClassname="Demo.Data.PersonalInfoPhone.Record" complexBatchManaged="0" padFromLeft="0" recordTerminator="\x0d\x0a" repeatSeparator="#" allowEmbeddedRecordTerminator="0" allowEarlyTerminator="0">
+<Record xmlns="http://www.intersystems.com/Ensemble/RecordMap" name="St.Recordmap.Data.CompexUser" type="delimited" char_encoding="UTF-8" targetClassname="St.Recordmap.Data.CompexUser.Record" complexBatchManaged="1" label="USER|" padFromLeft="0" recordTerminator="\x0d\x0a" allowEmbeddedRecordTerminator="0" allowEarlyTerminator="0">
   <Separators>
     <Separator>;</Separator>
   </Separators>
@@ -214,14 +174,6 @@ XData RecordMap [ XMLNamespace = "http://www.intersystems.com/Ensemble/RecordMap
   <Field name="DateOfBirth" required="1" ignored="0" datatype="%Date" params="FORMAT=3" repeating="0">
   </Field>
   <Field name="NationalId" required="0" ignored="0" datatype="%String" repeating="0">
-  </Field>
-  <Field name="Address" required="0" ignored="0" datatype="%String" params="MAXLEN=100" repeating="0">
-  </Field>
-  <Field name="City" required="0" ignored="0" datatype="%String" repeating="0">
-  </Field>
-  <Field name="Country" required="0" ignored="0" datatype="%String" repeating="0">
-  </Field>
-  <Field name="Phone" required="0" ignored="0" datatype="%String" params="MAXLEN=20" repeating="1">
   </Field>
 </Record>
 }

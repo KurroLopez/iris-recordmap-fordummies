@@ -1,8 +1,8 @@
 /// THIS IS GENERATED CODE. DO NOT EDIT.<br/>
-/// RECORDMAP: Generated from RecordMap 'Demo.Data.CompexUser'
+/// RECORDMAP: Generated from RecordMap 'St.Recordmap.Data.CompexUser'
 /// on 2025-08-26 at 09:57:15.076 [2025-08-26 09:57:15.076 UTC]
 /// by user _SYSTEM
-Class Demo.Data.CompexUser.Record Extends (EnsLib.RecordMap.ComplexChild, %XML.Adaptor, Ens.Request, EnsLib.RecordMap.Base) [ Inheritance = right, ProcedureBlock ]
+Class St.Recordmap.Data.CompexUser.Record Extends (EnsLib.RecordMap.ComplexChild, %XML.Adaptor, Ens.Request, EnsLib.RecordMap.Base) [ Inheritance = right, ProcedureBlock ]
 {
 
 Parameter INCLUDETOPFIELDS = 1;
@@ -17,7 +17,7 @@ Property NationalId As %String;
 
 Trigger OnDelete [ Event = DELETE ]
 {
-	Set %ok = ##class(Demo.Data.CompexUser.Record).%OnDelete($$$oidForm({ID})) If $$$ISERR(%ok) Quit
+	Set %ok = ##class(St.Recordmap.Data.CompexUser.Record).%OnDelete($$$oidForm({ID})) If $$$ISERR(%ok) Quit
 }
 
 Parameter RECORDMAPGENERATED = 1;
@@ -44,12 +44,12 @@ Storage Default
 <Value>Surname</Value>
 </Value>
 </Data>
-<DataLocation>^Demo.Data.CompexUser.RecordD</DataLocation>
+<DataLocation>^St.Recordmap.Data.C7D31.RecordD</DataLocation>
 <DefaultData>RecordDefaultData</DefaultData>
 <ExtentSize>2000000</ExtentSize>
-<IdLocation>^Demo.Data.CompexUser.RecordD</IdLocation>
-<IndexLocation>^Demo.Data.CompexUser.RecordI</IndexLocation>
-<StreamLocation>^Demo.Data.CompexUser.RecordS</StreamLocation>
+<IdLocation>^St.Recordmap.Data.C7D31.RecordD</IdLocation>
+<IndexLocation>^St.Recordmap.Data.C7D31.RecordI</IndexLocation>
+<StreamLocation>^St.Recordmap.Data.C7D31.RecordS</StreamLocation>
 <Type>%Storage.Persistent</Type>
 }
 

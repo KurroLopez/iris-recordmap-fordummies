@@ -1,8 +1,8 @@
 /// THIS IS GENERATED CODE. DO NOT EDIT.<br/>
-/// RECORDMAP: Generated from RecordMap 'Demo.Data.ComplexAddress'
+/// RECORDMAP: Generated from RecordMap 'St.Recordmap.Data.ComplexAddress'
 /// on 2025-08-26 at 10:06:48.878 [2025-08-26 10:06:48.878 UTC]
 /// by user _SYSTEM
-Class Demo.Data.ComplexAddress.Record Extends (EnsLib.RecordMap.ComplexChild, %XML.Adaptor, Ens.Request, EnsLib.RecordMap.Base) [ Inheritance = right, ProcedureBlock ]
+Class St.Recordmap.Data.ComplexAddress.Record Extends (EnsLib.RecordMap.ComplexChild, %XML.Adaptor, Ens.Request, EnsLib.RecordMap.Base) [ Inheritance = right, ProcedureBlock ]
 {
 
 Parameter INCLUDETOPFIELDS = 1;
@@ -19,7 +19,7 @@ Property Country As %String;
 
 Trigger OnDelete [ Event = DELETE ]
 {
-	Set %ok = ##class(Demo.Data.ComplexAddress.Record).%OnDelete($$$oidForm({ID})) If $$$ISERR(%ok) Quit
+	Set %ok = ##class(St.Recordmap.Data.ComplexAddress.Record).%OnDelete($$$oidForm({ID})) If $$$ISERR(%ok) Quit
 }
 
 Parameter RECORDMAPGENERATED = 1;
@@ -49,12 +49,12 @@ Storage Default
 <Value>City</Value>
 </Value>
 </Data>
-<DataLocation>^Demo.Data.ComplexAdF79D.RecordD</DataLocation>
+<DataLocation>^St.Recordmap.Data.C792C.RecordD</DataLocation>
 <DefaultData>RecordDefaultData</DefaultData>
 <ExtentSize>2000000</ExtentSize>
-<IdLocation>^Demo.Data.ComplexAdF79D.RecordD</IdLocation>
-<IndexLocation>^Demo.Data.ComplexAdF79D.RecordI</IndexLocation>
-<StreamLocation>^Demo.Data.ComplexAdF79D.RecordS</StreamLocation>
+<IdLocation>^St.Recordmap.Data.C792C.RecordD</IdLocation>
+<IndexLocation>^St.Recordmap.Data.C792C.RecordI</IndexLocation>
+<StreamLocation>^St.Recordmap.Data.C792C.RecordS</StreamLocation>
 <Type>%Storage.Persistent</Type>
 }
 

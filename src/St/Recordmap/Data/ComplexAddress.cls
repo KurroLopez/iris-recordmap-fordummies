@@ -1,10 +1,10 @@
-/// RECORDMAP: Modified during compilation of RecordMap 'Demo.Data.ComplexPhone'
-/// on 2025-08-26 at 09:59:24.427 [2025-08-26 09:59:24.427 UTC]
+/// RECORDMAP: Modified during compilation of RecordMap 'St.Recordmap.Data.ComplexAddress'
+/// on 2025-08-26 at 10:06:48.888 [2025-08-26 10:06:48.888 UTC]
 /// by user _SYSTEM
-Class Demo.Data.ComplexPhone Extends EnsLib.RecordMap.RecordMap
+Class St.Recordmap.Data.ComplexAddress Extends EnsLib.RecordMap.RecordMap
 {
 
-Parameter OBJECTNAME = "Demo.Data.ComplexPhone.Record";
+Parameter OBJECTNAME = "St.Recordmap.Data.ComplexAddress.Record";
 
 /// THIS IS GENERATED CODE. DO NOT EDIT.<br/>
 /// Method to retrieve a record from a stream or device. This method will be generated based on the
@@ -79,7 +79,7 @@ ClassMethod GetRecord(pStream As %IO.DeviceStream, pObject As %RegisteredObject,
 {
 	Set tStatus = $$$OK
 	If pLabelFound { Set tRecLabel = "" } 
-	Else { Set tRecLabel = "PHONE|" } 
+	Else { Set tRecLabel = "ADDR|" } 
 	Set tStatus = ..chunkRecord(pStream, .tRecordData, .tCharCount, "", pTimeout, $char(13,10), tRecLabel, .pLookAhead, "", 0)
 	If $$$ISERR(tStatus) Quit tStatus
 	Set tMaxLocal = $$$MaxLocalLength
@@ -99,21 +99,35 @@ ClassMethod GetRecord(pStream As %IO.DeviceStream, pObject As %RegisteredObject,
 	}
 	Do ..checkMerge(.tCurrChunk, .tRecordData, .tCurrString, $char(59), .tTopPiece)
 	If pGetTopFields {
-		Set pObject.CountryCode = tCurrString
+		Set pObject.Address = tCurrString
 	}
 	If '$data(tRecordData(tCurrChunk, "block")) {
 		Set tCurrString = $piece(tRecordData(tCurrChunk), $char(59), tTopPiece)
 	}
 	Do ..checkMerge(.tCurrChunk, .tRecordData, .tCurrString, $char(59), .tTopPiece)
 	If pGetTopFields {
-		Set pObject.Prefix = tCurrString
+		Set pObject.City = tCurrString
 	}
 	If '$data(tRecordData(tCurrChunk, "block")) {
 		Set tCurrString = $piece(tRecordData(tCurrChunk), $char(59), tTopPiece)
 	}
 	Do ..checkMerge(.tCurrChunk, .tRecordData, .tCurrString, $char(59), .tTopPiece)
 	If pGetTopFields {
-		Set pObject.Number = tCurrString
+		Set pObject.Zip = tCurrString
+	}
+	If '$data(tRecordData(tCurrChunk, "block")) {
+		Set tCurrString = $piece(tRecordData(tCurrChunk), $char(59), tTopPiece)
+	}
+	Do ..checkMerge(.tCurrChunk, .tRecordData, .tCurrString, $char(59), .tTopPiece)
+	If pGetTopFields {
+		Set pObject.State = tCurrString
+	}
+	If '$data(tRecordData(tCurrChunk, "block")) {
+		Set tCurrString = $piece(tRecordData(tCurrChunk), $char(59), tTopPiece)
+	}
+	Do ..checkMerge(.tCurrChunk, .tRecordData, .tCurrString, $char(59), .tTopPiece)
+	If pGetTopFields {
+		Set pObject.Country = tCurrString
 	}
 	Quit tStatus
 }
@@ -124,11 +138,13 @@ ClassMethod PutRecord(pStream As %IO.DeviceStream, pObject As %RegisteredObject,
 {
 	Set tStatus = $$$OK
 	Set tmpStream=##class(%Stream.TmpBinary).%New()
-	Set tStatus = tmpStream.Write("PHONE|")
+	Set tStatus = tmpStream.Write("ADDR|")
 	If $$$ISERR(tStatus) Quit tStatus
-	Do tmpStream.Write($select(pHasTopFields: pObject.CountryCode,1: ""))
-	Do tmpStream.Write($char(59) _ $select(pHasTopFields: pObject.Prefix,1: ""))
-	Do tmpStream.Write($char(59) _ $select(pHasTopFields: pObject.Number,1: ""))
+	Do tmpStream.Write($select(pHasTopFields: pObject.Address,1: ""))
+	Do tmpStream.Write($char(59) _ $select(pHasTopFields: pObject.City,1: ""))
+	Do tmpStream.Write($char(59) _ $select(pHasTopFields: pObject.Zip,1: ""))
+	Do tmpStream.Write($char(59) _ $select(pHasTopFields: pObject.State,1: ""))
+	Do tmpStream.Write($char(59) _ $select(pHasTopFields: pObject.Country,1: ""))
 	Set tStatus = tmpStream.Write($char(13,10))
 	If $$$ISERR(tStatus) Quit tStatus
 	Do pStream.CopyFrom(tmpStream,,0,.tStatus)
@@ -138,14 +154,14 @@ ClassMethod PutRecord(pStream As %IO.DeviceStream, pObject As %RegisteredObject,
 ClassMethod GetGeneratedClasses(Output pClasses As %String) As %Status
 {
 	Kill pClasses
-	Set pClasses("Demo.Data.ComplexPhone.Record")=""
+	Set pClasses("St.Recordmap.Data.ComplexAddress.Record")=""
 	Set pClasses($classname())=""
 	Quit $$$OK
 }
 
 ClassMethod getIdentifier() As %String [ CodeMode = expression ]
 {
-"PHONE|"
+"ADDR|"
 }
 
 ClassMethod getType() As EnsLib.RecordMap.Model.DataType.RecordType [ CodeMode = expression ]
@@ -155,15 +171,19 @@ ClassMethod getType() As EnsLib.RecordMap.Model.DataType.RecordType [ CodeMode =
 
 XData RecordMap [ XMLNamespace = "http://www.intersystems.com/Ensemble/RecordMap" ]
 {
-<Record xmlns="http://www.intersystems.com/Ensemble/RecordMap" name="Demo.Data.ComplexPhone" type="delimited" char_encoding="UTF-8" targetClassname="Demo.Data.ComplexPhone.Record" complexBatchManaged="1" label="PHONE|" padFromLeft="0" recordTerminator="\x0d\x0a" allowEmbeddedRecordTerminator="0" allowEarlyTerminator="0">
+<Record xmlns="http://www.intersystems.com/Ensemble/RecordMap" name="St.Recordmap.Data.ComplexAddress" type="delimited" char_encoding="UTF-8" targetClassname="St.Recordmap.Data.ComplexAddress.Record" complexBatchManaged="1" label="ADDR|" padFromLeft="0" recordTerminator="\x0d\x0a" allowEmbeddedRecordTerminator="0" allowEarlyTerminator="0">
   <Separators>
     <Separator>;</Separator>
   </Separators>
-  <Field name="CountryCode" required="0" ignored="0" datatype="%String" repeating="0">
+  <Field name="Address" required="0" ignored="0" datatype="%String" params="MAXLEN=100" repeating="0">
   </Field>
-  <Field name="Prefix" required="0" ignored="0" datatype="%String" repeating="0">
+  <Field name="City" required="0" ignored="0" datatype="%String" params="MAXLEN=100" repeating="0">
   </Field>
-  <Field name="Number" required="0" ignored="0" datatype="%String" repeating="0">
+  <Field name="Zip" required="0" ignored="0" datatype="%String" repeating="0">
+  </Field>
+  <Field name="State" required="0" ignored="0" datatype="%String" repeating="0">
+  </Field>
+  <Field name="Country" required="0" ignored="0" datatype="%String" repeating="0">
   </Field>
 </Record>
 }

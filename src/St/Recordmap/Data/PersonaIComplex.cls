@@ -1,8 +1,8 @@
 /// 
-Class Demo.Data.PersonaIComplex Extends EnsLib.RecordMap.ComplexMap
+Class St.Recordmap.Data.PersonaIComplex Extends EnsLib.RecordMap.ComplexMap
 {
 
-Parameter BATCHCLASS = "Demo.Data.PersonaIComplex.Batch";
+Parameter BATCHCLASS = "St.Recordmap.Data.PersonaIComplex.Batch";
 
 ClassMethod PutBatch(pIOStream As %IO.DeviceStream, pBatch As EnsLib.RecordMap.ComplexBatch) As %Status
 {
@@ -38,16 +38,16 @@ ClassMethod GetBatch(pIOStream As %IO.DeviceStream, pTimeout As %Numeric = -1, O
 			If $$$ISERR(tStatus) Quit
 		}
 		Set pIOStream.CharEncoding = "UTF-8"
-		Set pBatch = ##class(Demo.Data.PersonaIComplex.Batch).%New()
+		Set pBatch = ##class(St.Recordmap.Data.PersonaIComplex.Batch).%New()
 		Set pBatch.%Source = pIOStream.Name
 		Set pLookAhead = $get(pLookAhead)
 		If (5 > $length(pLookAhead)) {
 			Set pLookAhead = pLookAhead _ pIOStream.Read(5-$length(pLookAhead),pTimeout,.tStatus)
-			If $$$ISERR(tStatus) Set tStatus = $system.Status.AppendStatus($$$ERROR($$$EnsRecordMapErrComplexBasic,"PersonalInfo","Demo.Data.PersonaIComplex.PersonalInfo",$classname()),tStatus) Quit
+			If $$$ISERR(tStatus) Set tStatus = $system.Status.AppendStatus($$$ERROR($$$EnsRecordMapErrComplexBasic,"PersonalInfo","St.Recordmap.Data.PersonaIComplex.PersonalInfo",$classname()),tStatus) Quit
 		}
 		If ($extract(pLookAhead,1,5)="USER|") {
 			Set tStatus = ..getSeqPersonalInfo(pIOStream,.tSequence,.pLookAhead,pTimeout)
-			If $$$ISERR(tStatus) Set tStatus = $system.Status.AppendStatus($$$ERROR($$$EnsRecordMapErrComplexBasic,"PersonalInfo","Demo.Data.PersonaIComplex.PersonalInfo",$classname()),tStatus) Quit
+			If $$$ISERR(tStatus) Set tStatus = $system.Status.AppendStatus($$$ERROR($$$EnsRecordMapErrComplexBasic,"PersonalInfo","St.Recordmap.Data.PersonaIComplex.PersonalInfo",$classname()),tStatus) Quit
 			Set pBatch.PersonalInfo = tSequence
 		}
 	} Catch {
@@ -60,9 +60,9 @@ ClassMethod getSeqPersonalInfo(pIOStream As %IO.DeviceStream, Output pSequence A
 {
 	Set tStatus = $$$OK
 	Try {
-		Set pSequence = ##class(Demo.Data.PersonaIComplex.PersonalInfo).%New()
-		Set tStatus = ##class(Demo.Data.CompexUser).GetObject(pIOStream,.tObject,pTimeout,.pLookAhead)
-		If $$$ISERR(tStatus) Set tStatus = $system.Status.AppendStatus($$$ERROR($$$EnsRecordMapErrComplexBasic,"User","Demo.Data.CompexUser",$classname()),tStatus) Quit
+		Set pSequence = ##class(St.Recordmap.Data.PersonaIComplex.PersonalInfo).%New()
+		Set tStatus = ##class(St.Recordmap.Data.CompexUser).GetObject(pIOStream,.tObject,pTimeout,.pLookAhead)
+		If $$$ISERR(tStatus) Set tStatus = $system.Status.AppendStatus($$$ERROR($$$EnsRecordMapErrComplexBasic,"User","St.Recordmap.Data.CompexUser",$classname()),tStatus) Quit
 		Set pSequence.User = tObject
 		If (6 > $length(pLookAhead)) {
 			Set pLookAhead = pLookAhead _ pIOStream.Read(6-$length(pLookAhead),pTimeout,.tStatus)
@@ -70,7 +70,7 @@ ClassMethod getSeqPersonalInfo(pIOStream As %IO.DeviceStream, Output pSequence A
 		}
 		Set tCount = 0
 		While ($extract(pLookAhead,1,6) = "PHONE|") {
-			Set tStatus = ##class(Demo.Data.ComplexPhone).GetObject(pIOStream,.tObject,pTimeout,.pLookAhead)
+			Set tStatus = ##class(St.Recordmap.Data.ComplexPhone).GetObject(pIOStream,.tObject,pTimeout,.pLookAhead)
 			Set tCount = tCount + 1
 			If $$$ISERR(tStatus) Quit
 			If (5 < tCount) {
@@ -88,14 +88,14 @@ ClassMethod getSeqPersonalInfo(pIOStream As %IO.DeviceStream, Output pSequence A
 				If $$$ISERR(tStatus) Quit
 			}
 		}
-		If $$$ISERR(tStatus) Set tStatus = $system.Status.AppendStatus($$$ERROR($$$EnsRecordMapErrComplexRepeating,"Phone","Demo.Data.ComplexPhone",$classname(),tCount),tStatus) Quit
+		If $$$ISERR(tStatus) Set tStatus = $system.Status.AppendStatus($$$ERROR($$$EnsRecordMapErrComplexRepeating,"Phone","St.Recordmap.Data.ComplexPhone",$classname(),tCount),tStatus) Quit
 		If (5 > $length(pLookAhead)) {
 			Set pLookAhead = pLookAhead _ pIOStream.Read(5-$length(pLookAhead),pTimeout,.tStatus)
 			If $$$ISERR(tStatus) Quit
 		}
 		Set tCount = 0
 		While ($extract(pLookAhead,1,5) = "ADDR|") {
-			Set tStatus = ##class(Demo.Data.ComplexAddress).GetObject(pIOStream,.tObject,pTimeout,.pLookAhead)
+			Set tStatus = ##class(St.Recordmap.Data.ComplexAddress).GetObject(pIOStream,.tObject,pTimeout,.pLookAhead)
 			Set tCount = tCount + 1
 			If $$$ISERR(tStatus) Quit
 			If (2 < tCount) {
@@ -113,7 +113,7 @@ ClassMethod getSeqPersonalInfo(pIOStream As %IO.DeviceStream, Output pSequence A
 				If $$$ISERR(tStatus) Quit
 			}
 		}
-		If $$$ISERR(tStatus) Set tStatus = $system.Status.AppendStatus($$$ERROR($$$EnsRecordMapErrComplexRepeating,"Address","Demo.Data.ComplexAddress",$classname(),tCount),tStatus) Quit
+		If $$$ISERR(tStatus) Set tStatus = $system.Status.AppendStatus($$$ERROR($$$EnsRecordMapErrComplexRepeating,"Address","St.Recordmap.Data.ComplexAddress",$classname(),tCount),tStatus) Quit
 	}
 	Catch {
 		Set tStatus = $$$SystemError
@@ -125,13 +125,13 @@ Parameter RECORDMAPGENERATED = 1;
 
 XData ComplexBatch [ XMLNamespace = "http://www.intersystems.com/Ensemble/RecordMap" ]
 {
-<ComplexBatch xmlns="http://www.intersystems.com/Ensemble/RecordMap" name="Demo.Data.PersonaIComplex" char_encoding="UTF-8" targetClassname="Demo.Data.PersonaIComplex.Batch">
+<ComplexBatch xmlns="http://www.intersystems.com/Ensemble/RecordMap" name="St.Recordmap.Data.PersonaIComplex" char_encoding="UTF-8" targetClassname="St.Recordmap.Data.PersonaIComplex.Batch">
   <RecordSequence name="PersonalInfo" required="0" repeating="0">
-    <RecordReference name="User" required="1" repeating="0" recordMap="Demo.Data.CompexUser">
+    <RecordReference name="User" required="1" repeating="0" recordMap="St.Recordmap.Data.CompexUser">
     </RecordReference>
-    <RecordReference name="Phone" required="0" repeating="1" minRepeats="0" maxRepeats="5" recordMap="Demo.Data.ComplexPhone">
+    <RecordReference name="Phone" required="0" repeating="1" minRepeats="0" maxRepeats="5" recordMap="St.Recordmap.Data.ComplexPhone">
     </RecordReference>
-    <RecordReference name="Address" required="0" repeating="1" minRepeats="0" maxRepeats="2" recordMap="Demo.Data.ComplexAddress">
+    <RecordReference name="Address" required="0" repeating="1" minRepeats="0" maxRepeats="2" recordMap="St.Recordmap.Data.ComplexAddress">
     </RecordReference>
   </RecordSequence>
 </ComplexBatch>

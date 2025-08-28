@@ -1,0 +1,19 @@
+USER|Matthew O.;Wellington;1964-07-31;208-36-1552
+PHONE|1;305;2089160
+PHONE|1;805;9473136
+ADDR|1485 Stiles Street;Pittsburgh;15286;PA;USA
+USER|Deena C.;Nixon;1997-03-03;495-26-8850
+PHONE|1;505;6799005
+PHONE|1;839;6697404
+ADDR|1868 Mandan Road;Columbia;42728;KY;USA
+USER|Florence L.;Guyton;2005-04-10;21 069 835 790
+PHONE|49;0;6500655519
+ADDR|Invalidenstrasse 82;Contwig;66503;Rhineland-Palatinate;Germany
+USER|Maximilian;Hahn;1945-10-17;92 871 402 258
+PHONE|49;0;3773616421
+PHONE|49;0;9701712246
+ADDR|Boxhagener Str. 97;Hamburg;29149;Hamburg;Germany
+USER|Amelio;Toledo Zavala;1976-06-07;93789292F
+PHONE|34;;969061006
+PHONE|34;;631596729
+ADDR|Plaza Mayor, 71;Carbajosa de la Sagrada;37188;Salamanca;Spain

@@ -12,5 +12,8 @@ COPY Samples Samples
 COPY iris.script iris.script
 
 RUN iris start IRIS \
-    && iris session IRIS < iris.script \
-    && iris stop IRIS quietly 
+&& iris session IRIS < iris.script \
+&& iris stop IRIS quietly 
+
+RUN mkdir -p /opt/irisbuild/process
+RUN mkdir -p /opt/irisbuild/process/archive

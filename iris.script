@@ -11,8 +11,8 @@
   do request.Get("/packages/zpm/"_version_"/installer")
   do $system.OBJ.LoadStream(request.HttpResponse.Data,"c")
   zpm "enable -community"
-  zpm "install webterminal -v" 
+    zpm "install iris-deploy-tools -v"
   hang 2
-  ; do $system.OBJ.Import("/opt/irisbuild/src/St","ck", , 1)
+  do $system.OBJ.Import("/opt/irisbuild/src/Demo","ck", , 1)
   hang 2
   halt

@@ -1,10 +1,10 @@
 /// 
-Class Demo.Data.PersonalInfo Extends EnsLib.RecordMap.RecordMap
+Class St.Recordmap.Data.PersonalInfo Extends EnsLib.RecordMap.RecordMap
 {
 
 XData RecordMap [ XMLNamespace = "http://www.intersystems.com/Ensemble/RecordMap" ]
 {
-<Record xmlns="http://www.intersystems.com/Ensemble/RecordMap" name="Demo.Data.PersonalInfo" type="delimited" char_encoding="UTF-8" targetClassname="Demo.Data.PersonalInfo.Record" complexBatchManaged="0" padFromLeft="0" recordTerminator="\x0d\x0a" allowEmbeddedRecordTerminator="0" allowEarlyTerminator="0">
+<Record xmlns="http://www.intersystems.com/Ensemble/RecordMap" name="St.Recordmap.Data.PersonalInfo" type="delimited" char_encoding="UTF-8" targetClassname="St.Recordmap.Data.PersonalInfo.Record" complexBatchManaged="0" padFromLeft="0" recordTerminator="\x0d\x0a" allowEmbeddedRecordTerminator="0" allowEarlyTerminator="0">
   <Separators>
     <Separator>;</Separator>
   </Separators>

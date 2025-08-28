@@ -10,7 +10,7 @@ To download the code from GitHub, follow these steps:
     ```
 2. Navigate to the project directory:
     ```bash
-    cd iris-mll-fordummies
+    cd iris-recordmap-fordummies
     ```
 3. Build and start the Docker containers:
     ```bash
@@ -18,9 +18,8 @@ To download the code from GitHub, follow these steps:
     docker-compose up -d
     ```
 
-## Open the IRIS terminal
+## Open the IRIS portal
 
-To open the IRIS terminal and initialize the example classes, follow these steps:
-
-1. Open your web browser and navigate to [https://localhost:52773/terminal/](https://localhost:52773/terminal/).
+1. Open your web browser and navigate to [localhost:42773/csp/sys/UtilHome.csp/](localhost:42773/csp/sys/UtilHome.csp/).
 2. Log in with your credentials.
+3. Open namespace USER and navigate to production Demo.Production
